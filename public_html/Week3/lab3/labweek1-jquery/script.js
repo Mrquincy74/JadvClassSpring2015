@@ -1,6 +1,6 @@
-var form = document.querySelector('form');
+var form = $('form');
 
-form.addEventListener('submit', checkForm);
+form.on('submit', checkForm);
 
 // checks the form for the info 
 // Get a red asterisk next to it
@@ -9,17 +9,17 @@ form.addEventListener('submit', checkForm);
 function checkForm(e) {
     e.preventDefault();
 
-    var fname = document.querySelector('input[name="fname"]');
-    var fnameError = document.querySelector('.fnameError').classList;
+    var fname = $('input[name="fname"]');
+    var fnameError = $('.fnameError'); // .period defines class 
 
-    var lname = document.querySelector('input[name="lname"]');
-    var lnameError = document.querySelector('.lnameError').classList;
+    var lname = $('input[name="lname"]');
+    var lnameError = $('.lnameError');
 
-    var email = document.querySelector('input[name="email"]');
-    var emailError = document.querySelector('.emailError').classList;
+    var email = $('input[name="email"]');
+    var emailError = $('.emailError');
 
-    var phone = document.querySelector('input[name="phone"]');
-    var phoneError = document.querySelector('.phoneError').classList;
+    var phone = $('input[name="phone"]');
+    var phoneError = $('.phoneError');
 
     var isValid = true;
 
@@ -27,55 +27,55 @@ function checkForm(e) {
 
 // if statments that display error messages
 
-    if (fname.value === '') {
-        fnameError.add('error');
+    if (fname.val() === '') {
+        fnameError.addClass('error');
         isValid = false;
     } else {
-        fnameError.remove('error');
+        fnameError.removeClass('error');
 
 
     }
 
-    if (lname.value === '') {
-        lnameError.add('error');
+    if (lname.val() === '') {
+        lnameError.addClass('error');
         isValid = false;
     } else {
-        lnameError.remove('error');
+        lnameError.removeClass('error');
 
     }
 
-    if (phone.value === '') {
-        phoneError.add('error');
+    if (phone.val() === '') {
+        phoneError.addClass('error');
         isValid = false;
     } else {
-        phoneError.remove('error');
+        phoneError.removeClass('error');
 
     }
 
-    if (email.value === '') {
-        emailError.add('error');
+    if (email.val() === '') {
+        emailError.addClass('error');
         isValid = false;
     } else {
-        emailError.remove('error');
+        emailError.removeClass('error');
 
     }
    
     if (isValid) {
-        form.classList.add('hide'); // form div will get hidden
-        var conf = document.querySelector('#confirmation'); //div confirmation
+        form.addClass('hide'); // form div will get hidden
+        var conf = $('confirmation'); //div confirmation
         
         // text box output
         var html = '<p>First Name: ';
-        html += fname.value + '</p>';
+        html += fname.val()+ '</p>';
         html += '<p>Last Name: ';
-        html += lname.value + '</p>';
+        html += lname.val() + '</p>';
         html += '<p>Email: ';
-        html += email.value + '</p>';
+        html += email.val() + '</p>';
         html += '<p>Phone: ';
-        html += phone.value + '</p>';
+        html += phone.val() + '</p>';
 
 
-        conf.innerHTML = html;
+        conf.html(html);
 
     }
 
