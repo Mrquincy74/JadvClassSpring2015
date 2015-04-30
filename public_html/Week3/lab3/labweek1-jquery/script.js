@@ -1,10 +1,11 @@
-var form = $('form');
 
-form.on('submit', checkForm);
 
 // checks the form for the info 
 // Get a red asterisk next to it
 //The label will get changed to red by swapping its class
+var form = $('form');
+
+form.on('submit', checkForm);
 
 function checkForm(e) {
     e.preventDefault();
@@ -62,17 +63,16 @@ function checkForm(e) {
    
     if (isValid) {
         form.addClass('hide'); // form div will get hidden
-        var conf = $('confirmation'); //div confirmation
+        
+        var conf = $('#confirmation'); //div confirmation
+        conf.removeClass('hide');
+          conf.addClass('show');
         
         // text box output
-        var html = '<p>First Name: ';
-        html += fname.val()+ '</p>';
-        html += '<p>Last Name: ';
-        html += lname.val() + '</p>';
-        html += '<p>Email: ';
-        html += email.val() + '</p>';
-        html += '<p>Phone: ';
-        html += phone.val() + '</p>';
+        var html = '<p>First Name: ' + fname.val()+ '</p>';
+        html += '<p>Last Name: ' + lname.val() + '</p>';
+        html += '<p>Email: ' + email.val() + '</p>';
+        html += '<p>Phone: '+ phone.val() + '</p>';
 
 
         conf.html(html);
