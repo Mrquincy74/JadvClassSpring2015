@@ -1,6 +1,7 @@
 
 
-
+var city;
+var state;
 var form = document.querySelector('form');
 var geocoder; // geocoder declared
 form.addEventListener('submit', checkForm);
@@ -10,78 +11,71 @@ form.addEventListener('submit', checkForm);
 //The label will get changed to red by swapping its class
 
 function checkForm(e) {
-    e.preventDefault();
-    var fields = document.querySelectorAll('form p'); // fields declared as <p> tags
     
-    var len = fields.length; // declares length of the fields aka <p> tags on the form 
+    e.preventDefault();
+    var paragraphs = document.querySelectorAll('form p'); // fields declared as <p> tags
+    
+    var len = paragraphs.length; // declares length of the fields aka <p> tags on the form 
     
     var isValid = true; // isValid true declared
+    
+    var html = ""; // declares html as nothing
     
     var data = {}; // declared var data 
     // if i < length of the form increment loops through the fields declared as the forms <p> tags 
     
     for (var i = 0; i < len; i++) {
 
-        var input = fields[i].querySelector('input'); // selects inputs 
-        data[input.name] = input.value; // data input.name is the name of the fields Address = input.value    
-//        //<p class="Address2Error">
-//                <label>Address2</label>
-//                <input name="Address2" type="text" value="" />
-//                <span class="hide">*</span>
-//            </p>
-//       
+        var input = paragraphs[i].querySelector('input'); // selects inputs 
+        var label = paragraphs[i].querySelector('label'); // selects label
+        data[input.name] = input.value; // data input.name is the name of the fields Address = input.value 
+        html += '<p>' + label.innerText + " : " +  input.value +  '</p>'; // sets html with label & input value wraps in <p></p>//
+   
         // if value fields are empty an error will occure 
         // else fields are entered error will be removed 
         if (input.value === '') {
-            fields[i].classList.add('error');
+            paragraphs[i].classList.add('error');
             isValid = false;
         } else {
-            fields[i].classList.remove('error');
+            paragraphs[i].classList.remove('error');
         }
     }
-    if (data.Password !== data.PasswordConformation) {
+    
+    
+    if (data.Password !== data.PasswordConfirmation) 
+    {
         document.querySelector('.PasswordError').classList.add('error');
         document.querySelector('.PasswordConformationError').classList.add('error');
-      
+        
+      isValid = false;
     }
     
     // if is Valid is true all data will be displayed
     if (isValid === true) {
         form.classList.add('hide'); // form div will get hidden
-        var conf = document.querySelector('#conformation'); //div confirmation
+        var confirmation = document.querySelector('#confirmation'); //div confirmation
 
         // text box output
-        var html = '<p>First Name: ' + data.fname + '</p>';
-        html += '<p>Last Name: ' + data.lname + '</p>';
-        html += '<p>Email: ' + data.email + '</p>';
-        html += '<p>Username: ' + data.username + '</p>';
-        html += '<p>Phone: ' + data.phone + '</p>';
-        html += '<p>Address1: ' + data.Address1 + '</p>';
-        html += '<p>Address2: ' + data.Address2 + '</p>';
-        html += '<p>City: ' + data.City + '</p>';
-        html += '<p>State: ' + data.State + '</p>';
-        html += '<p>Zipcode: ' + data.Zipcode + '</p>';
-
-
-
-        conf.innerHTML = html;
-
+        confirmation.innerHTML = html;
+        console.log(data);
     }
 
 
 
 }
 
-function initialize(){
+function initialize()
+{
     geocoder = new google.maps.Geocoder();
     var Zipcode = document.querySelector('input[name="Zipcode"]');
-ventListner("blur", codeAddress);    
+    Zipcode.addEventListener("blur", codeAddress);  // don't forget the addEventListner!!  
 }
+    google.maps.event.addDomListener(window, 'load', initialize);
 
 function codeAddress() {
     var address = document.querySelector('input[name="Zipcode"]').value;
     geocoder.geocode({'address': address}, function (results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
+        if (status === google.maps.GeocoderStatus.OK) {
             console.log(results);
             handleResults(results);
         } else {
@@ -101,14 +95,14 @@ function handleResults(results) {
         if (geocodeObject.address_components[i].types.indexOf('locality') > -1) {
             console.log(geocodeObject.address_components[i].long_name);
             console.log("This is the city.");
-            var city = document.querySelector('body > form > p.cityError > input[type="text"]');
+            var city = document.querySelector('input[name="City"]');
             city.value = geocodeObject.address_components[i].long_name;
         }
 
         if (geocodeObject.address_components[i].types.indexOf('administrative_area_level_1') > -1) {
             console.log(geocodeObject.address_components[i].short_name);
             console.log("This is the state.");
-            var state = document.querySelector('body > form > p:nth-child(8) > input[type="text"]');
+            var state = document.querySelector('input[name="State"]');
             state.value = geocodeObject.address_components[i].short_name;
         }
 
