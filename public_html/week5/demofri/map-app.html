@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Distance Map App</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            #map-canvas {
+                width: 500px;
+                height: 300px;
+            }
+        </style>        
+    </head>
+    <body>
+        
+        Start <input type="text" name="start" /> <br />
+        End <input type="text" name="end" />
+        
+        <div id="map-canvas"></div>
+        
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+        <script type="text/javascript">
+            
+            
+            var mapdata = {
+              "user_coords" : {
+                    "lat" : 0,
+                    "lng" : 0
+                }  
+            };
+            
+            function getUserLocation() {
+                
+                if ( "geolocation" in navigator ) {
+
+                 navigator.geolocation.getCurrentPosition(function(position){
+                     console.log(position);
+                     cords = position.coords;
+
+                     console.log('Your current position is:');
+                     console.log('Latitude : ' + cords.latitude);
+                     console.log('Longitude: ' + cords.longitude);
+                     console.log('More or less ' + cords.accuracy + ' meters.');
+
+                   
+                 });
+
+             }
+                
+            }
+            
+            
+            
+            
+        </script>
+    </body>
+</html>
