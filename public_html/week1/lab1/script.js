@@ -12,8 +12,9 @@ form.addEventListener('submit', checkForm);
 
 function checkForm(e) {
     e.preventDefault();
-
-    var fname = document.querySelector('input[name="fname"]');
+    
+    // grabs fname element by the id
+    var fname = document.querySelector('input[name="fname"]'); 
     var fnameError = document.querySelector('.fnameError').classList;
 
     var lname = document.querySelector('input[name="lname"]');
@@ -90,3 +91,24 @@ function checkForm(e) {
 
 
 }
+
+//Description: Lab1
+//
+//Create a simple form submission screen with simple error handling capabilities/feedback and a confirmation display
+//
+//Four Fields and a submission button
+//
+//First Name
+//Last Name
+//Email Address
+//Phone Number
+//Requirements:
+//
+//If any text input field is empty it will:
+//
+//Get a red asterisk next to it
+//The label will get changed to red by swapping its class
+//If all the fields are filled in upon clicking the submission button:
+//
+//The form <div> will get hidden
+//The confirmation div will show up with the information from the text fields
