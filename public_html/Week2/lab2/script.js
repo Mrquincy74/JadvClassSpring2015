@@ -1,9 +1,20 @@
-
+// Lab 2
+//Working With Objects and Events
+//
+//Add an Address 1, Address 2, City, State, Zipcode, Username, Password and Password Confirmation to your Week 1 Lab Assignment.
+//
+//Capture the data that has been input by the User and write it to an Object Literal (JSON Object).
+//
+//Display the Information in the confirmation page and display the object in the browser’s console.
+//
+//Also, Using the Google Maps API Populate City and State from a user entered zip code.
 
 var city;
 var state;
 var form = document.querySelector('form');
 var geocoder; // geocoder declared
+
+// calls checkForm function after submit button initiated
 form.addEventListener('submit', checkForm);
 
 // checks the form for the info 
@@ -13,6 +24,7 @@ form.addEventListener('submit', checkForm);
 function checkForm(e) {
     
     e.preventDefault();
+    
     var paragraphs = document.querySelectorAll('form p'); // fields declared as <p> tags
     
     var len = paragraphs.length; // declares length of the fields aka <p> tags on the form 
@@ -26,8 +38,9 @@ function checkForm(e) {
     
     for (var i = 0; i < len; i++) {
 
-        var input = paragraphs[i].querySelector('input'); // selects inputs 
-        var label = paragraphs[i].querySelector('label'); // selects label
+        var input = paragraphs[i].querySelector('input'); // selects inputs from <p> tags 
+        var label = paragraphs[i].querySelector('label'); // selects label from <p> tags
+        
         data[input.name] = input.value; // data input.name is the name of the fields Address = input.value 
         html += '<p>' + label.innerText + " : " +  input.value +  '</p>'; // sets html with label & input value wraps in <p></p>//
    
@@ -41,7 +54,7 @@ function checkForm(e) {
         }
     }
     
-    
+    // if statment for Password & PasswordConfirmation not equal show error!
     if (data.Password !== data.PasswordConfirmation) 
     {
         document.querySelector('.PasswordError').classList.add('error');
@@ -67,7 +80,7 @@ function checkForm(e) {
 function initialize()
 {
     geocoder = new google.maps.Geocoder();
-    var Zipcode = document.querySelector('input[name="Zipcode"]');
+    var Zipcode = document.querySelector('input[name="Zipcode"]'); // this is how you get the input name to populate into the document 
     Zipcode.addEventListener("blur", codeAddress);  // don't forget the addEventListner!!  
 }
     google.maps.event.addDomListener(window, 'load', initialize);
