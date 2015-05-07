@@ -40,8 +40,7 @@ function checkForm(e){
             $(paragraphs[i]).removeClass('error');
             info += "<p>" + label.text() + "" + input.val() + "</p>"
         }
-    }
-//   confirmation.innerHTML = html;
+   
   
     
     if (jsondata.Password !== jsondata.PasswordConformation) {
@@ -77,10 +76,6 @@ function checkForm(e){
 
         }
     }
-
-
-
-
 
 function initialize()
 {
@@ -127,4 +122,5 @@ function handleResults(results) {
 
     }
 
+}
 }
