@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bar Graph</title>
+        <style>
+            canvas {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div align="center">
+
+            <h2>Lab 7</h2>
+
+
+            <canvas id="can" height="400" width="650">
+
+
+            </canvas>
+            <br />
+            
+                       <button id="ResetBtn"> Reset </button>
+        </div>
+
+
+
+        <script type="text/javascript">
+
+            //https://developer.apple.com/library/safari/documentation/AudioVideo/Conceptual/HTML-canvas-guide/DrawingLinesandShapes/DrawingLinesandShapes.html#//apple_ref/doc/uid/TP40010542-CH3-SW1
+
+            var can = document.querySelector('canvas'),
+                    ctx = can.getContext("2d"); // varaiable named context
+            // numbers  
+            function draw() {
+                //ctx.save();
+                ctx.shadowOffsetX = 2;
+                ctx.shadowColor = "#A205BF";
+                ctx.shadowOffsetY = 2;
+                ctx.shadowBlur = 10;
+
+                ctx.strokeStyle = "black";
+                ctx.lineJoin = "square";
+                ctx.lineCap = "square";
+                ctx.lineWidth = 1;
+
+                // lines
+                ctx.beginPath();
+                ctx.moveTo(100, 0); //x, y
+                ctx.lineTo(100, can.height - 35);
+                ctx.lineTo(can.width, can.height - 35);
+
+                for (var i = 40; i < 500; i += 40) {
+                    ctx.moveTo(100, i); //x, y
+                    ctx.lineTo(can.width, i);
+
+                }
+                ctx.stroke();
+                //ctx.restore();
+
+
+                //  color and relative positions of bar text 
+                ctx.fillStyle = "#E805B9";
+                ctx.font = "16pt Helvetica";
+                ctx.fillText("Dogs", 150, can.height - 10);
+
+                //ctx.fillStyle = "blue";
+                //ctx.fillRect(150, 100, 50, can.height-140);  // x, y, width, height
+
+                
+                ctx.fillStyle = "#FF064E";
+                ctx.font = "16pt Helvetica";
+                ctx.fillText("Cats", 250, can.height - 10);
+
+                //ctx.fillStyle = "red";
+                //ctx.fillRect(250, 250, 50, can.height-290);  // x, y, width, height
+
+                ctx.fillStyle = "#5006FF";
+                ctx.font = "16pt Helvetica";
+                ctx.fillText("Horses", 350, can.height - 10);
+
+                // heading relative position and color
+                ctx.fillStyle = "#E805A9";
+                ctx.font = "16pt Helvetica";
+                ctx.fillText("Lovable Animals", 275, can.height - 375);
+
+                //ctx.fillStyle = "green";
+                //ctx.fillRect(350, 150, 50, can.height-190);  // x, y, width, height
+
+
+                var startYScore = 40;
+
+
+                ctx.fillStyle = "black";
+                ctx.font = "16pt Helvetica";
+                
+                // numbers populate 
+                for (var score = 100; score >= 20; score -= 10) {
+
+                    ctx.fillText(score, 10, startYScore);
+                    startYScore += 40;
+                }
+
+
+                /*
+                 ctx.fillStyle = "black";
+                 ctx.font = "16pt Helvetica";
+                 ctx.fillText("90", 10, 80);
+                 
+                 ctx.fillStyle = "black";
+                 ctx.font = "16pt Helvetica";
+                 ctx.fillText("80", 10, 120);
+                 
+                 ctx.fillStyle = "black";
+                 ctx.font = "16pt Helvetica";
+                 ctx.fillText("70", 10, 160);
+                 
+                 ctx.fillStyle = "black";
+                 ctx.font = "16pt Helvetica";
+                 ctx.fillText("60", 10, 200);
+                 
+                 ctx.fillStyle = "black";
+                 ctx.font = "16pt Helvetica";
+                 ctx.fillText("50", 10, 240);
+                 
+                 ctx.fillStyle = "black";
+                 ctx.font = "16pt Helvetica";
+                 ctx.fillText("40", 10, 280);
+                 
+                 ctx.fillStyle = "black";
+                 ctx.font = "16pt Helvetica";
+                 ctx.fillText("30", 10, 320);
+                 
+                 ctx.fillStyle = "black";
+                 ctx.font = "16pt Helvetica";
+                 ctx.fillText("20", 10, 360);
+                 
+                 
+                 */
+
+            }
+            
+            //draw line function
+            function drawLines() {
+
+                ctx.strokeStyle = "#8605E8";
+                ctx.lineJoin = "square";
+                ctx.lineCap = "round";
+                ctx.lineWidth = 5;
+
+                ctx.beginPath();
+
+                ctx.moveTo(180, bluend);
+                //           x    y
+                ctx.lineTo(275, redend);
+                ctx.lineTo(375, greenend);
+                ctx.lineTo(475, can.height - 40); // bottom of line
+
+                ctx.stroke(); // makes the lines 
+            }
+
+            // bar graphs variables and functions 
+            var bluey = 300,
+                    blueheight = can.height - 340,
+                    interval = setInterval(drawSteps, 100);
+
+            var greeny = 300,
+                    greenheight = can.height - 340,
+                    redy = 350,
+                    redheight = can.height - 390;
+            
+            var bluend = 60;
+            var redend = 200;
+            var greenend = 50;
+            function drawSteps() {
+
+                if (bluey <= bluend && redy <= redend && greeny <= greenend) {
+                    clearInterval(interval);
+                    drawLines(); //callback, animations are done;
+                } else {
+                    ctx.clearRect(0, 0, can.width, can.height);
+                    draw();
+
+                    if (bluey > bluend) {
+                        ctx.fillStyle = "#E805B9";
+                        ctx.fillRect(150, bluey, 50, blueheight);  // x, y, width, height
+                        bluey -= 10;
+                        blueheight += 10;
+                    } else {
+                        ctx.fillStyle = "#FF064E";
+                        ctx.fillRect(150, bluey, 50, blueheight);
+                    }
+
+                    if (redy > redend) {
+                        ctx.fillStyle = "yellow";
+                        ctx.fillRect(250, redy, 50, redheight);  // x, y, width, height
+                        redy -= 10;
+                        redheight += 10;
+                    } else {
+                        ctx.fillStyle = "yellow";
+                        ctx.fillRect(250, redy, 50, redheight);
+                    }
+
+                    if (greeny > greenend) {
+                        ctx.fillStyle = "green";
+                        ctx.fillRect(350, greeny, 50, greenheight);  // x, y, width, height
+                        greeny -= 10;
+                        greenheight += 10;
+                    } else {
+                        ctx.fillStyle = "green";
+                        ctx.fillRect(350, greeny, 50, greenheight);
+                    }
+
+                }
+            }
+            
+            // button var and function 
+            var btn = document.querySelector('#ResetBtn');
+            btn.addEventListener('click', ResetBtn);
+
+            function ResetBtn() {
+                bluey = 300;
+                blueheight = can.height - 340;
+                greeny = 300;
+                greenheight = can.height - 340;
+                redy = 350;
+                redheight = can.height - 390;
+                bluend = 60;
+                redend = 200;
+                greenend = 50;
+                interval = setInterval(drawSteps, 100);
+            }
+
+
+
+
+
+        </script>
+    </body>
+
+</html>
