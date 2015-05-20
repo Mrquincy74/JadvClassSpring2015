@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lab 4  Regex</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="style.css" media="all" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <!-- Four Fields and a submission button
+             First Name
+             Last Name
+             Email Address
+             Phone Number!
+             The form <div> will get hidden -->
+
+        <form action="#" method="post">
+            <p class="fnameError">
+                <label>First Name</label>
+                <input name="fname" id="fname" type="text" value="" />
+                <span class="hide">*</span>
+            </p>
+            <p class="lnameError">
+                <label>Last Name</label>
+                <input name="lname" id="lname" type="text" value="" />
+                <span class="hide">*</span>
+            </p>
+            <p class="emailError">
+                <label>Email</label>
+                <input name="email" id="email"  type="text" value=""
+                placeholder="xxx@xxxx.xxx" />
+                <span class="hide">*</span>
+            </p>
+            <p class="UsernameError">
+                <label>Username</label>
+                <input name="username" id="username" type="text" value="" />
+                <span class="hide">*</span>
+            </p>
+            <p class="PasswordError">
+                <label>Password</label>
+                <input name="Password" id="password" type="text" value="" />
+                <span class="hide">*</span>
+            </p>
+            <p class="PasswordConformationError">
+                <label>Password Confirmation</label>
+                <input name="PasswordConfirmation" id="passconf" type="text" value="" />
+                <span class="hide">*</span>
+            </p>
+            <p class="phoneError">
+                <label>Phone</label>
+                <input name="phone" id="phone" type="text" value="" 
+                placeholder="xxx-xxx-xxxx" />
+                <span class="hide">*</span>
+            </p>
+            <p class="Address1Error">
+                <label>Address1</label>
+                <input name="Address1" id= "adress1" type="text" value="" />
+                <span class="hide">*</span>
+            </p>
+            <p class="Address2Error">
+                <label>Address2</label>
+                <input name="Address2" id= "adress2" type="text" value="" />
+                <span class="hide">*</span>
+            </p>
+            <p class="CityError">
+                <label>City</label>
+                <input name="City" type="text" value="" />
+                <span class="hide">*</span>
+            </p>
+            <p class="StateError">
+                <label>State</label>
+                <input name="State" type="text" value="" />
+                <span class="hide">*</span>
+            </p>
+            <p class="ZipcodeError">
+                <label>Zip Code</label>
+                <input name="Zipcode" type="text" value="" />
+                <span class="hide">*</span>
+            </p>
+
+            
+                <input type="submit" name="submit" value="Submit" />
+            
+        </form>
+        <!div shows information on a text field>
+        <div id="confirmation">
+            
+        </div>
+    <!includes the script.js>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script type="text/javascript" src="script.js"></script>
+
+</html>
