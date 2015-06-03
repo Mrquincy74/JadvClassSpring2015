@@ -4,6 +4,7 @@
 var form = $('form');
 var geocoder; // geocoder declared
 form.on('submit', checkForm);
+ var info;
 
 // checks the form for the info 
 // Get a red asterisk next to it
@@ -38,7 +39,7 @@ function checkForm(e){
             
         } else {
             $(paragraphs[i]).removeClass('error');
-            info += "<p>" + label.text() + "" + input.val() + "</p>"
+            info += "<p>" + label.text() + "" + input.val() + "</p>";
         }
    
   
