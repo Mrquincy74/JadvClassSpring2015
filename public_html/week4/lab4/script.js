@@ -1,13 +1,5 @@
-// Lab 2
-//Working With Objects and Events
-//
-//Add an Address 1, Address 2, City, State, Zipcode, Username, Password and Password Confirmation to your Week 1 Lab Assignment.
-//
-//Capture the data that has been input by the User and write it to an Object Literal (JSON Object).
-//
-//Display the Information in the confirmation page and display the object in the browser’s console.
-//
-//Also, Using the Google Maps API Populate City and State from a user entered zip code.
+// Lab 4
+
 
 var city;
 var state;
