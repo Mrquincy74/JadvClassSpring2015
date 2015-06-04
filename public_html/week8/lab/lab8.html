@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lab 8</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <style type="text/css">
+            canvas {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="race" width="750" height="150"></canvas>
+        <br />
+        <button id="play">Start Race</button>
+
+        <script type="text/javascript">
+            // end var allows 
+           var end = document.querySelector('#play');
+          
+            var rec1Winner = "";
+            var rec2Winner = "";
+            //play.styly.display = 'none'; // hides button
+            var can = document.querySelector('canvas'),
+            ctx = can.getContext("2d");
+    
+            var play = document.querySelector('#play');
+            
+            end.style.display = 'none';
+            
+            play.addEventListener('click', reset);
+            window.addEventListener('load',raceZoom ); // starts race at page load
+
+            //Clears the canvas
+            function drawClear() {
+                ctx.clearRect(0, 0, can.width, can.height);
+            }
+            // size of box 1 
+            var
+                    width = 65;
+            height = 30,
+                    xaxis1 = 0,
+                    yaxis1 = 20;
+
+            // size of box 2 
+            var
+                    width2 = 65;
+            height2 = 30,
+                    xaxis2 = 0,
+                    yaxis2 = 100;
+
+
+            // boxes move on the x axis 
+            var canvasRight = (can.width - 110);
+
+            // raceZoom function calls the moveRect1 and moveRect2
+            function raceZoom() {
+                    drawLine();              
+                if (rec1Winner == "" && rec2Winner == "") {
+                     drawClear();
+                      moveRect1();
+                      moveRect2();                 
+                }
+                else {
+                    racewinner();
+                    end.style.display = 'block';              
+                }
+                
+             setTimeout(raceZoom, 100); //setTimeout waits to run something
+            }
+            
+            //Moves the box1
+            function moveRect1() 
+            {
+                 
+                if (xaxis1 < canvasRight) {
+                    xaxis1 += randNum(25);
+                    ctx.fillRect(xaxis1, yaxis1, width, height); // x, y, width, height
+                    ctx.fillStyle = "Blue";
+                }
+                else {
+                   ctx.fillRect(xaxis1, yaxis1, width, height);
+                   rec1Winner = "Winner";
+                }
+                
+                    
+             }
+            
+            //Moves box 2
+            function moveRect2()
+            {
+                  
+                if (xaxis2 < canvasRight)
+                {
+                    xaxis2 += randNum(25);
+                    ctx.fillRect(xaxis2, yaxis2, width2, height2); // x, y, width, height
+                    ctx.fillStyle ="Red";
+                }
+                     else 
+                     {
+                      ctx.fillRect(xaxis2, yaxis2, width2, height2);
+                      rec2Winner = "Winner";
+                     }
+                
+            }
+            //race winner function 
+            function racewinner(){
+                if (rec1Winner == "")
+                {
+               ctx.fillStyle = "#Blue";
+               ctx.font = "46pt Helvetica";
+               ctx.fillText("Blue Wins", 50,50);
+           }
+           if (rec2Winner == "")
+           {
+               ctx.fillStyle = "#Red";
+               ctx.font = "46pt Helvetica";
+               ctx.fillText("Red Wins", 50,50);
+           }
+            }
+           
+             // random number generater for boxex
+            function randNum(max) {
+                return Math.ceil(Math.random() * max) + 1;
+            }
+            // draws the line at the end of the race 
+            function drawLine() {
+                ctx.beginPath();
+                ctx.moveTo(700, 0); //x, y
+                ctx.lineTo(700, 150);
+                ctx.stroke();
+            }
+                         
+            // create a for loop that will create lines across the canvas
+            function reset() {
+                end.style.display = 'none';
+                width = 65;
+                height = 30;
+                xaxis1 = 0;
+                yaxis1 = 20;
+                width2 = 65;
+                height2 = 30;
+                xaxis2 = 0;
+                yaxis2 = 100;
+                rec1Winner = "";
+                rec2Winner = "";
+             
+                raceZoom();
+
+            }
+
+        </script>
+    </body>
+</html>
