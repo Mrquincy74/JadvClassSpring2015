@@ -9,12 +9,16 @@ var form = document.querySelector('#mainform');
  // To the form we add a function so when the form is
  // submmited we run checkForm function 
 form.addEventListener('click', checkForm);
+doucument.querySelector('#saveData').addEventListener('click', saveData);
+
+
 
  //regular expressions to validate fields
     var rgxFullname = /^[a-zA-Z0-9$]/;
     var rgxEmail = /^([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))$/;
     var rgxPhone = /^\(?([2-9]{1}[0-9]{2})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
     var rgxDesc = /[0-9 A-Za-z]+/;
+   
 
 // checks the form for the info 
 //checks the inputs for information
@@ -94,12 +98,12 @@ function checkForm(e) {
         
         //document.querySelector  @returns {HTMLCollection} on the confirmation 
         //var conf = document.querySelector('#confirmation'); //div confirmation
-        
-              
+          
     }
-
-
-
+    
+      function saveData() {                
+                localStorage.setItem("name", input.fullName);                
+            }
 
     }
     
